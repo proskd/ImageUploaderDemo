@@ -44,18 +44,16 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosDataProv
     func configureCell(_ cell:PhotoCollectionViewCell,  withAsset asset: PHAsset) {
         cell.label!.text = asset.localIdentifier
         
-        let options:PHImageRequestOptions = PHImageRequestOptions()
-        options.version = .current
-        options.deliveryMode = .fastFormat
-        options.resizeMode = .fast
-        options.isNetworkAccessAllowed = true
-        
-        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: options) { (image, info) in
-            DispatchQueue.main.async {
-                cell.imageView.image = image
-            }
+        //cancel any in-flight requests for this cell, if any.
+        if cell.imageRequest != PHInvalidImageRequestID {
+            PhotoImageLoader.default().cancelImageRequest(for: cell.imageRequest)
+            cell.imageRequest = PHInvalidImageRequestID
         }
         
+        cell.imageRequest = PhotoImageLoader.default().loadThumbnail(for: asset) { (image, info) in
+            cell.imageRequest = PHInvalidImageRequestID;
+            cell.imageView.image = image
+        }
     }
     
     // MARK: - Photos Delegate

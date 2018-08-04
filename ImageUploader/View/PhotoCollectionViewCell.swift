@@ -8,9 +8,11 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
+    public var imageRequest:PHImageRequestID = PHInvalidImageRequestID;
 }
