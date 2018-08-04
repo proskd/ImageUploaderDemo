@@ -30,7 +30,7 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosDataProv
         return self.photosDataProvider.countOfPhotos()
     }
     
-    override  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell:PhotoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCollectionViewCell
 
@@ -43,6 +43,19 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosDataProv
     
     func configureCell(_ cell:PhotoCollectionViewCell,  withAsset asset: PHAsset) {
         cell.label!.text = asset.localIdentifier
+        
+        let options:PHImageRequestOptions = PHImageRequestOptions()
+        options.version = .current
+        options.deliveryMode = .fastFormat
+        options.resizeMode = .fast
+        options.isNetworkAccessAllowed = true
+        
+        PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: options) { (image, info) in
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        }
+        
     }
     
     // MARK: - Photos Delegate
