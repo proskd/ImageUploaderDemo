@@ -21,6 +21,8 @@
 		BA5C69422115DB7A000547BA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C69412115DB7A000547BA /* PhotoCollectionViewCell.swift */; };
 		BA5C694421161F1F000547BA /* PhotoImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C694321161F1F000547BA /* PhotoImageLoader.swift */; };
 		BA5C694621163704000547BA /* PhotoImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C694521163704000547BA /* PhotoImageUploader.swift */; };
+		BA5C694821163EF6000547BA /* PhotoUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C694721163EF6000547BA /* PhotoUpload.swift */; };
+		BA5C694A21163F5E000547BA /* PhotoUploadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C694921163F5E000547BA /* PhotoUploadQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		BA5C69412115DB7A000547BA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		BA5C694321161F1F000547BA /* PhotoImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoImageLoader.swift; sourceTree = "<group>"; };
 		BA5C694521163704000547BA /* PhotoImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoImageUploader.swift; sourceTree = "<group>"; };
+		BA5C694721163EF6000547BA /* PhotoUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUpload.swift; sourceTree = "<group>"; };
+		BA5C694921163F5E000547BA /* PhotoUploadQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploadQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 				BA5C693921153DFC000547BA /* PhotosDataProvider.swift */,
 				BA5C694321161F1F000547BA /* PhotoImageLoader.swift */,
 				BA5C694521163704000547BA /* PhotoImageUploader.swift */,
+				BA5C694721163EF6000547BA /* PhotoUpload.swift */,
+				BA5C694921163F5E000547BA /* PhotoUploadQueue.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -312,12 +318,14 @@
 				BA5C694621163704000547BA /* PhotoImageUploader.swift in Sources */,
 				BA5C693A21153DFC000547BA /* PhotosDataProvider.swift in Sources */,
 				BA5C69072113E30C000547BA /* AppDelegate.swift in Sources */,
+				BA5C694A21163F5E000547BA /* PhotoUploadQueue.swift in Sources */,
 				BA5C690A2113E30C000547BA /* ImageUploader.xcdatamodeld in Sources */,
 				BA5C693F2115DAB9000547BA /* PhotosCollectionViewController.swift in Sources */,
 				BA5C69422115DB7A000547BA /* PhotoCollectionViewCell.swift in Sources */,
 				BA5C694421161F1F000547BA /* PhotoImageLoader.swift in Sources */,
 				BA5C690C2113E30C000547BA /* MasterViewController.swift in Sources */,
 				BA5C690E2113E30C000547BA /* DetailViewController.swift in Sources */,
+				BA5C694821163EF6000547BA /* PhotoUpload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
