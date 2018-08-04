@@ -17,6 +17,9 @@
 		BA5C69212113E30E000547BA /* ImageUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C69202113E30E000547BA /* ImageUploaderTests.swift */; };
 		BA5C692C2113E30F000547BA /* ImageUploaderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C692B2113E30F000547BA /* ImageUploaderUITests.swift */; };
 		BA5C693A21153DFC000547BA /* PhotosDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C693921153DFC000547BA /* PhotosDataProvider.swift */; };
+		BA5C693F2115DAB9000547BA /* PhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C693E2115DAB9000547BA /* PhotosCollectionViewController.swift */; };
+		BA5C69422115DB7A000547BA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C69412115DB7A000547BA /* PhotoCollectionViewCell.swift */; };
+		BA5C694421161F1F000547BA /* PhotoImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C694321161F1F000547BA /* PhotoImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		BA5C692B2113E30F000547BA /* ImageUploaderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderUITests.swift; sourceTree = "<group>"; };
 		BA5C692D2113E30F000547BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA5C693921153DFC000547BA /* PhotosDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDataProvider.swift; sourceTree = "<group>"; };
+		BA5C693E2115DAB9000547BA /* PhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewController.swift; sourceTree = "<group>"; };
+		BA5C69412115DB7A000547BA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		BA5C694321161F1F000547BA /* PhotoImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 				BA5C69062113E30C000547BA /* AppDelegate.swift */,
 				BA5C69172113E30E000547BA /* Info.plist */,
 				BA5C693D211541A8000547BA /* Resources */,
+				BA5C69402115DB5F000547BA /* View */,
 				BA5C693C21154198000547BA /* Controller */,
 				BA5C693B21154189000547BA /* Model */,
 			);
@@ -134,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				BA5C693921153DFC000547BA /* PhotosDataProvider.swift */,
+				BA5C694321161F1F000547BA /* PhotoImageLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +151,7 @@
 			children = (
 				BA5C690B2113E30C000547BA /* MasterViewController.swift */,
 				BA5C690D2113E30C000547BA /* DetailViewController.swift */,
+				BA5C693E2115DAB9000547BA /* PhotosCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -156,6 +165,14 @@
 				BA5C69082113E30C000547BA /* ImageUploader.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		BA5C69402115DB5F000547BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA5C69412115DB7A000547BA /* PhotoCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +309,9 @@
 				BA5C693A21153DFC000547BA /* PhotosDataProvider.swift in Sources */,
 				BA5C69072113E30C000547BA /* AppDelegate.swift in Sources */,
 				BA5C690A2113E30C000547BA /* ImageUploader.xcdatamodeld in Sources */,
+				BA5C693F2115DAB9000547BA /* PhotosCollectionViewController.swift in Sources */,
+				BA5C69422115DB7A000547BA /* PhotoCollectionViewCell.swift in Sources */,
+				BA5C694421161F1F000547BA /* PhotoImageLoader.swift in Sources */,
 				BA5C690C2113E30C000547BA /* MasterViewController.swift in Sources */,
 				BA5C690E2113E30C000547BA /* DetailViewController.swift in Sources */,
 			);
