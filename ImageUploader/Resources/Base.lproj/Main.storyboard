@@ -43,6 +43,9 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1p-xv-R0j">
                                             <rect key="frame" x="0.0" y="0.0" width="102" height="78"/>
                                         </imageView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ARl-5a-db5">
+                                            <rect key="frame" x="33" y="33" width="37" height="37"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <constraints>
@@ -52,10 +55,13 @@
                                     <constraint firstAttribute="trailing" secondItem="SUC-fC-Na5" secondAttribute="trailing" id="ILN-kR-caY"/>
                                     <constraint firstAttribute="bottom" secondItem="SUC-fC-Na5" secondAttribute="bottom" id="T8l-m2-ib4"/>
                                     <constraint firstItem="J1p-xv-R0j" firstAttribute="leading" secondItem="Ao7-TA-cM7" secondAttribute="leading" id="VbC-az-OOT"/>
+                                    <constraint firstItem="ARl-5a-db5" firstAttribute="centerX" secondItem="Ao7-TA-cM7" secondAttribute="centerX" id="WJC-rD-p6U"/>
                                     <constraint firstAttribute="trailing" secondItem="J1p-xv-R0j" secondAttribute="trailing" id="iff-F8-edK"/>
+                                    <constraint firstItem="ARl-5a-db5" firstAttribute="centerY" secondItem="Ao7-TA-cM7" secondAttribute="centerY" id="pfQ-GE-4NA"/>
                                     <constraint firstItem="J1p-xv-R0j" firstAttribute="bottom" secondItem="SUC-fC-Na5" secondAttribute="top" id="zmm-0z-ops"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="ARl-5a-db5" id="yXE-5d-cjC"/>
                                     <outlet property="imageView" destination="J1p-xv-R0j" id="Nar-em-Xhd"/>
                                     <outlet property="label" destination="SUC-fC-Na5" id="htV-8H-7A3"/>
                                 </connections>

@@ -11,4 +11,8 @@ import Photos
 
 class PhotoUpload {
     var asset:PHAsset?;
+    
+    init(asset:PHAsset) {
+        self.asset = asset;
+    }
 }

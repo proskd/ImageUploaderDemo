@@ -13,6 +13,7 @@ import Photos
 class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     public var imageRequest:PHImageRequestID = PHInvalidImageRequestID;
 }

@@ -11,17 +11,67 @@ import Photos
 
 
 class PhotoUploadQueue {
-    var queuedUploads:NSMutableDictionary = NSMutableDictionary(capacity: 0);
+    var orderedUploads:[PhotoUpload];
     
-    public func isAssetQueued(_ asset:PHAsset) ->Bool {
-        return false;
+    init() {
+        orderedUploads = [];
     }
     
-    public func queueAsset(_ asset:PHAsset) {
+    public func isEmpty() -> Bool {
+        return orderedUploads.count > 0;
+    }
+    
+    public func count() -> Int {
+        return orderedUploads.count;
+    }
+    
+    public func isAssetQueued(_ assetIdentifier:String) -> Bool {
+        if (self.orderedUploads.isEmpty) {
+            return false;
+        }
         
+        var targetIndex = -1;
+        for i in 0 ... self.orderedUploads.count - 1 {
+            let anUpload = self.orderedUploads[i];
+            if anUpload.asset?.localIdentifier == assetIdentifier {
+                targetIndex = i;
+                break;
+            }
+        }
+        
+        return targetIndex != -1;
     }
     
-    public func removeAsset(_ asset:PHAsset) {
+    public func enqueueAsset(_ asset:PHAsset) {
+        let assetIdentifier = asset.localIdentifier;
+        if (isAssetQueued(assetIdentifier)) {
+            return;
+        }
+        
+        let photoUpload = PhotoUpload(asset: asset)
+        self.orderedUploads.append(photoUpload);
+    }
     
+    public func removeAsset(_ assetIdentifier:String) {
+        var targetIndex = -1;
+        for i in 0 ... self.orderedUploads.count {
+            let anUpload = self.orderedUploads[i];
+            if anUpload.asset?.localIdentifier == assetIdentifier {
+                targetIndex = i;
+                break;
+            }
+        }
+        
+        if targetIndex != -1 {
+            self.orderedUploads.remove(at: targetIndex);
+        }
+    }
+    
+    public func dequeAsset() -> PhotoUpload? {
+        if (isEmpty()) {
+            return nil;
+        }
+        
+        return self.orderedUploads[0];
     }
 }

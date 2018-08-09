@@ -14,7 +14,7 @@ class PhotoImageLoader {
     
     private static var defaultImageLoader:PhotoImageLoader?;
     
-    //enforce singleton for this class
+    //enforce singleton for Dthis class
     open class func `default`() -> PhotoImageLoader {
         if defaultImageLoader == nil {
             defaultImageLoader = PhotoImageLoader()
