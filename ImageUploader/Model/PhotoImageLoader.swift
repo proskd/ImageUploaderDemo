@@ -43,4 +43,15 @@ class PhotoImageLoader {
     
         return PHImageManager.default().requestImage(for: asset, targetSize: defaultThumbnailSize, contentMode: .aspectFill, options: options, resultHandler: resultHandler);
     }
+    
+    public func loadImageData(for asset:PHAsset, resultHandler: @escaping (Data?, String?, UIImageOrientation, [AnyHashable : Any]?) -> Swift.Void) -> PHImageRequestID {
+
+        let options:PHImageRequestOptions = PHImageRequestOptions()
+        options.version = .current
+        options.deliveryMode = .highQualityFormat
+        options.resizeMode = .none
+        options.isNetworkAccessAllowed = true
+        
+        return PHImageManager.default().requestImageData(for: asset, options: options, resultHandler: resultHandler);
+    }
 }
