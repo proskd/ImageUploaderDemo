@@ -18,7 +18,7 @@ class PhotoUploadQueue {
     }
     
     public func isEmpty() -> Bool {
-        return orderedUploads.count > 0;
+        return orderedUploads.count == 0;
     }
     
     public func count() -> Int {
