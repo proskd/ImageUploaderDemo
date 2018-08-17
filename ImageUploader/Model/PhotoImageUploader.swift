@@ -10,10 +10,8 @@ import Foundation
 import Photos
 
 
-class PhotoImageUploader: NSObject, URLSessionDelegate {
+class PhotoImageUploader: NSObject, NetworkResourceDelegate {
     
-    public static let IMGUR_UPLOAD_URL = "https://api.imgur.com/3/image";
-    public static let IMAGE_BOUNDARY = "WebKitFormBoundary7MA4YWxkTrZu0gW"
     public static let PhotoUploadedNotification = "PhotoUploadedNotification";
     
     private static let MAX_CONCURRENT_UPLOADS = 1;
@@ -22,7 +20,7 @@ class PhotoImageUploader: NSObject, URLSessionDelegate {
    
     private var uploadQueue:PhotoUploadQueue;
     private var numUploadsInProgress:Int;
-    private var urlSession:URLSession?;
+    private var imgurNetworkResource:ImgurNetworkResource;
     
     //enforce singleton for this class
     open class func `default`() -> PhotoImageUploader {
@@ -36,11 +34,10 @@ class PhotoImageUploader: NSObject, URLSessionDelegate {
     private override init() {
         self.uploadQueue = PhotoUploadQueue();
         self.numUploadsInProgress = 0;
+        self.imgurNetworkResource = ImgurNetworkResource()
         super.init()
         
-        let config = URLSessionConfiguration.default;
-        
-        self.urlSession = URLSession(configuration: config, delegate: self, delegateQueue: nil);
+        self.imgurNetworkResource.delegate = self;
     }
     
     public func enqueueAsset(_ asset:PHAsset) {
@@ -64,100 +61,35 @@ class PhotoImageUploader: NSObject, URLSessionDelegate {
             
             let anAsset = uploadQueue.dequeAsset();
             
-            let url = URL(string: PhotoImageUploader.IMGUR_UPLOAD_URL);
-            var request:URLRequest = URLRequest(url: url!);
-            
-            let authHeader = String(format: "Client-ID %@", "ed3f0b82e522861");
-            
-            request.setValue(authHeader, forHTTPHeaderField: "Authorization")
-            request.setValue("multipart/form-data; boundary=----" + PhotoImageUploader.IMAGE_BOUNDARY,
-                              forHTTPHeaderField: "Content-Type")
-            request.httpMethod = "POST";
-            
-            var bodyData:Data?
-            
             PhotoImageLoader.default().loadImageData(for: (anAsset?.asset)!) { (data:Data?, dataUTI:String?, orientation:UIImageOrientation, info:[AnyHashable : Any]?) in
                 if ((data) != nil) {
-                    
-                    bodyData = self.photoDataToFormData(imageData: data, boundary: PhotoImageUploader.IMAGE_BOUNDARY, fileName: "TestFileName") as Data
-                    
-                    let uploadTask = self.urlSession?.uploadTask(with: request, from: bodyData, completionHandler: { (data, response, error) in
-                        if (response != nil) {
-                            NSLog(String(format:"got a response! %@", response!))
+                    self.imgurNetworkResource.uploadImageData(data, completionHandler: { (success, responseData, error) in
+                        if success {
+                           //parse response and handle result
+                            let string = String(data: responseData!, encoding: .utf8)
                             
+                            NSLog(String(format:"Successful Response: %@", string!));
+                        } else {
+                            //handle error
                         }
                         
-                        if let anError = error {
-//                            self.handleClientError(error)
-                            self.numUploadsInProgress-=1
-                            self.uploadNextInQueue()
-                            return
-                        }
-                        guard let httpResponse = response as? HTTPURLResponse,
-                            (200...299).contains(httpResponse.statusCode) else {
-//                                self.handleServerError(response)
-                                let string = String(data: data!, encoding: .utf8)
-                                
-                                NSLog(String(format:"Error Response: %@", string!));
-
-                                self.numUploadsInProgress-=1
-                                self.uploadNextInQueue()
-                                return
-                        }
-                        let string = String(data: data!, encoding: .utf8)
-                        
-                        NSLog(String(format:"Successful Response: %@", string!));
-                        
-                        
+                        //regardless of success or failure, continue on with the queue if needed
                         self.uploadQueue.removeAsset((anAsset?.asset?.localIdentifier)!)
                         self.numUploadsInProgress-=1
                         self.uploadNextInQueue()
-                    });
-                    
-                    uploadTask?.resume()
+                    })
                 }
             }
-            
-            //begin uploading the photo with a completion handler
             
             //when photo is done, remove it from the queue and post a notification that it was completed.
         }
     }
     
-    func photoDataToFormData(imageData:Data?,boundary:String,fileName:String) -> NSData {
-        let fullData = NSMutableData()
+    //MARK: NetworkResourceDelegate
+    
+    func uploadProgress(_ progress: Double) {
+        let log = String(format: "Uplaod progress %f", progress);
         
-        // 1 - Boundary should start with --
-        let lineOne = "------" + boundary + "\r\n"
-        fullData.append(lineOne.data(
-            using: String.Encoding.utf8,
-            allowLossyConversion: false)!)
-        
-        
-        // 2
-        let lineTwo = "Content-Disposition: form-data; name=\"image\"\r\n\r\n"
-        fullData.append(lineTwo.data(
-            using: String.Encoding.utf8,
-            allowLossyConversion: false)!)
-        
-//        // 3
-//        let lineThree = "Content-Type: image/jpg\r\n\r\n"
-//        fullData.append(lineThree.data(
-//            using: String.Encoding.utf8,
-//            allowLossyConversion: false)!)
-//        
-//        
-        // 4
-        fullData.append(imageData!)
-        
-        // 5
-        let lineFive = "\r\n"
-        fullData.append(lineFive.data(using: String.Encoding.utf8)!)
-        
-        // 6 - The end. Notice -- at the start and at the end
-        let lineSix = "------" + boundary + "--\r\n"
-        fullData.append(lineSix.data(using: String.Encoding.utf8)!)
-        
-        return fullData
+        NSLog(log);
     }
 }
