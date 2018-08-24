@@ -25,6 +25,7 @@
 		BA5C694A21163F5E000547BA /* PhotoUploadQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C694921163F5E000547BA /* PhotoUploadQueue.swift */; };
 		BABDF7EF21265E4200469D01 /* ImgurNetworkResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDF7EE21265E4200469D01 /* ImgurNetworkResource.swift */; };
 		BABDF7F12126677800469D01 /* NetworkResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDF7F02126677800469D01 /* NetworkResource.swift */; };
+		BABDF7F5212F9EF500469D01 /* LinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABDF7F4212F9EF500469D01 /* LinksTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		BA5C694921163F5E000547BA /* PhotoUploadQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploadQueue.swift; sourceTree = "<group>"; };
 		BABDF7EE21265E4200469D01 /* ImgurNetworkResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurNetworkResource.swift; sourceTree = "<group>"; };
 		BABDF7F02126677800469D01 /* NetworkResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResource.swift; sourceTree = "<group>"; };
+		BABDF7F4212F9EF500469D01 /* LinksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				BA5C690B2113E30C000547BA /* MasterViewController.swift */,
 				BA5C690D2113E30C000547BA /* DetailViewController.swift */,
 				BA5C693E2115DAB9000547BA /* PhotosCollectionViewController.swift */,
+				BABDF7F4212F9EF500469D01 /* LinksTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				BA5C690C2113E30C000547BA /* MasterViewController.swift in Sources */,
 				BA5C690E2113E30C000547BA /* DetailViewController.swift in Sources */,
 				BA5C694821163EF6000547BA /* PhotoUpload.swift in Sources */,
+				BABDF7F5212F9EF500469D01 /* LinksTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

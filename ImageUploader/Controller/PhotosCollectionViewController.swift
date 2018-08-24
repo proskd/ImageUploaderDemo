@@ -20,6 +20,12 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosDataProv
         self.photosDataProvider.fetchPhotos()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LinksSegue" {
+            let linksVC:LinksTableViewController = segue.destination as! LinksTableViewController;
+        }
+    }
+    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1;

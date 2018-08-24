@@ -73,12 +73,53 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Photos" id="iGs-sR-Z5f">
-                        <barButtonItem key="rightBarButtonItem" title="Links" id="m5L-up-6I1"/>
+                        <barButtonItem key="rightBarButtonItem" title="Links" id="m5L-up-6I1">
+                            <connections>
+                                <segue destination="mdD-Ap-Rsb" kind="show" identifier="LinksSegue" id="fxL-Q9-7Lq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjW-9d-LKw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-346.39999999999998" y="-222.63868065967017"/>
+        </scene>
+        <!--Links Table View Controller-->
+        <scene sceneID="2BD-dh-MQ3">
+            <objects>
+                <tableViewController id="mdD-Ap-Rsb" customClass="LinksTableViewController" customModule="ImageUploader" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2UF-1t-Vlm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LinkCell" textLabel="9sf-4e-llo" style="IBUITableViewCellStyleDefault" id="SfJ-Or-lFd">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SfJ-Or-lFd" id="L7k-Uu-v75">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9sf-4e-llo">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mdD-Ap-Rsb" id="p9H-um-LzT"/>
+                            <outlet property="delegate" destination="mdD-Ap-Rsb" id="YJ6-z9-Y2k"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1Z-gA-1vS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="636" y="-222"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rag-OQ-uqu">
