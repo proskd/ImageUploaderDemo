@@ -32,6 +32,7 @@ class PhotoImageLoader {
         PHImageManager.default().cancelImageRequest(identifier);
     }
     
+    @discardableResult
     public func loadThumbnail(for asset:PHAsset, resultHandler: @escaping (UIImage?, [AnyHashable : Any]?) -> Swift.Void) -> PHImageRequestID
     {
     
@@ -44,6 +45,7 @@ class PhotoImageLoader {
         return PHImageManager.default().requestImage(for: asset, targetSize: defaultThumbnailSize, contentMode: .aspectFill, options: options, resultHandler: resultHandler);
     }
     
+    @discardableResult
     public func loadImageData(for asset:PHAsset, resultHandler: @escaping (Data?, String?, UIImageOrientation, [AnyHashable : Any]?) -> Swift.Void) -> PHImageRequestID {
 
         let options:PHImageRequestOptions = PHImageRequestOptions()
