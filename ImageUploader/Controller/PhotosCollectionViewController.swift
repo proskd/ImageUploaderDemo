@@ -18,7 +18,6 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosDataProv
     override func viewDidLoad() {
         
         self.photosDataProvider.fetchPhotos()
-        
     }
     
     
@@ -41,6 +40,20 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosDataProv
         return cell;
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let asset = self.photosDataProvider.photoAt(indexPath.row) else {
+            return;
+        }
+        
+        if (PhotoImageUploader.default().isAssetQueued(asset)) {
+            PhotoImageUploader.default().cancelUpload(asset);
+        } else {
+            PhotoImageUploader.default().enqueueAsset(asset);
+        }
+        
+        collectionView.reloadItems(at: [indexPath])
+    }
+    
     func configureCell(_ cell:PhotoCollectionViewCell,  withAsset asset: PHAsset) {
         cell.label!.text = asset.localIdentifier
         
@@ -53,6 +66,14 @@ class PhotosCollectionViewController: UICollectionViewController, PhotosDataProv
         cell.imageRequest = PhotoImageLoader.default().loadThumbnail(for: asset) { (image, info) in
             cell.imageRequest = PHInvalidImageRequestID;
             cell.imageView.image = image
+        }
+        
+        if PhotoImageUploader.default().isAssetQueued(asset) {
+            cell.activityIndicator.isHidden = false;
+            cell.activityIndicator.startAnimating();
+        } else {
+            cell.activityIndicator.isHidden = true;
+            cell.activityIndicator.stopAnimating();
         }
     }
     
